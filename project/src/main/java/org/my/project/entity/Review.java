@@ -12,16 +12,16 @@ import java.time.LocalDateTime;
 public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    public Long id;
+    private Long id;
     @Column
-    public String Content;
+    private String content;
     @Column
-    public double ratings;
+    private double ratings;
     @Column
-    public LocalDateTime createdAt;
+    private LocalDateTime createdAt;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie",nullable = false)
-    public Movie movie;
+    private Movie movie;
     public Review(){
 
     }

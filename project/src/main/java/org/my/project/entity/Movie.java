@@ -19,11 +19,11 @@ public class Movie {
 @Column(nullable = false)
     private String description;
 @Column(nullable = false)
-    private String Genre;
+    private String genre;
 @Column(nullable = false)
-    private int RelaeseYear;
+    private int relaeseYear;
 public Movie(){}
 @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
-    public List<Review> reviews;
+    private List<Review> reviews;
 
 }
