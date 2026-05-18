@@ -15,7 +15,7 @@ public class Movie {
     @Id
     private Long id;
 @Column(nullable = false)
-    private String tittle;
+    private String title;
 @Column(nullable = false)
     private String description;
 @Column(nullable = false)
