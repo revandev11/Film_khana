@@ -13,6 +13,7 @@ import java.util.List;
 @Table(name = "user")
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
     @Column(name="user_name")
     private String userName;
@@ -28,5 +29,6 @@ public class User {
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     public List<Review>reviews;
+
 
 }
