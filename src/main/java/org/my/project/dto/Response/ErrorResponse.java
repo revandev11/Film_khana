@@ -1,4 +1,4 @@
-package org.my.project.dto;
+package org.my.project.dto.Response;
 
 import lombok.Getter;
 import lombok.Setter;
