@@ -35,7 +35,7 @@ public class SecurityConfig {
     return authenticationConfiguration.getAuthenticationManager();
     }
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpRequest httpRequest)
+   public SecurityFilterChain securityFilterChain(HttpRequest httpRequest
 
 
 

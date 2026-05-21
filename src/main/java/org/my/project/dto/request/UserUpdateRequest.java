@@ -4,8 +4,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 import org.my.project.enums.Roles;
-
+@Getter
+@Setter
 public class UserUpdateRequest {
     @NotBlank(message = "username is requered")
     @Size(min = 6, max=100, message = " username must be 2-200 characters")

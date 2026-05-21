@@ -1,6 +1,6 @@
 package org.my.project.security;
 import org.my.project.entity.User;
-import org.my.project.repository.Userrepository;
+import org.my.project.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-private final Userrepository userrepository;
+private final UserRepository userrepository;
 
-    public CustomUserDetailsService(Userrepository userrepository) {
+    public CustomUserDetailsService(UserRepository userrepository) {
         this.userrepository = userrepository;
     }
     @Override

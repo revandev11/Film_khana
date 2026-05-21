@@ -10,4 +10,11 @@ public class UserResponse {
     private String userName;
     private String email;
 public UserResponse(){}
+
+
+    public UserResponse(Long id, String userName, String email) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+    }
 }

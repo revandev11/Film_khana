@@ -27,7 +27,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
-    // 409 Conflict - Eyni filmə təkrar rəy yazılmaq istənəndə (Data dublikatlığı)
     @ExceptionHandler(ReviewAlreadyExistsException.class)
     public ResponseEntity<ErrorResponse> handleReviewAlreadyExists(ReviewAlreadyExistsException ex) {
         ErrorResponse error = new ErrorResponse(
@@ -37,4 +36,14 @@ public class GlobalExceptionHandler {
         );
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
+    @ExceptionHandler(UserAlreadyExxsist.class)
+    public ResponseEntity<ErrorResponse> handleUserAlreadyExists(UserAlreadyExxsist ex) {
+        ErrorResponse error = new ErrorResponse(
+                HttpStatus.CONFLICT.value(),
+                "Conflict",
+                ex.getMessage()
+        );
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+
 }
