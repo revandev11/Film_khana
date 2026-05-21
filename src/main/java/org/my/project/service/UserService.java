@@ -26,26 +26,18 @@ public class UserService {
         this.userRepository = userrepository;
         this.passwordEncoder = passwordEncoder;
     }
-    public UserResponse registrUser(RegisterRequest request){
+    @Transactional
+    public UserResponse createUser(UserCreateRequest request){
         if (userRepository.existsByEmail(request.getEmail()))
-            throw new RuntimeException("user already exsist");
-        User user=UserMapper.FromUserToEntity(request);
+            throw new UserAlreadyExxsist("user already exsist");
+
+        User user=new User();
         String encode = passwordEncoder.encode(request.getPassword());
         user.setPassword(encode);
-        User save = userRepository.save(user);
-        return UserMapper.ToDto(save);
-
-    }
-    public UserResponse createUser(UserCreateRequest userCreateRequest){
-        if (userRepository.existsByEmail(userCreateRequest.getEmail()))
-            throw new UserAlreadyExxsist("user already exsist");
-        User user=UserMapper.ToEntity(userCreateRequest);
-        String encode = passwordEncoder.encode(userCreateRequest.getPassword());
-        user.setPassword(encode);
-        if (userCreateRequest.getRoles()!=null){
-       Roles roles = userCreateRequest.getRoles();
-            user.setRoles(roles);
-        }
+        user.setUserName(request.getUserName());
+        user.setEmail(request.getEmail());
+        Roles roles=Roles.USER;
+       user.setRoles(roles);
         User save=userRepository.save(user);
         return UserMapper.ToDto(save);
     }
