@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -40,6 +41,11 @@ public class UserService {
        user.setRoles(roles);
         User save=userRepository.save(user);
         return UserMapper.ToDto(save);
+    }
+    public UserResponse findByEmail(String email){
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException("the user is not found: "+email));
+        return UserMapper.ToDto(user);
     }
 
     public List<UserResponse>getAllUSers(){
