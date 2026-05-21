@@ -1,6 +1,7 @@
 package org.my.project.service;
 
 import jakarta.transaction.Transactional;
+import org.my.project.dto.request.ReviewCreateRequest;
 import org.my.project.dto.request.ReviewUpdateRequest;
 import org.my.project.dto.response.ReviewResponse;
 import org.my.project.entity.Review;
@@ -10,7 +11,6 @@ import org.my.project.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ReviewService {
@@ -18,7 +18,8 @@ public class ReviewService {
     public ReviewService(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
-    public List<ReviewResponse>getAllReviews(ReviewResponse reviewResponse){
+
+    public List<ReviewResponse>getAllReviews(){
         List<Review> all = reviewRepository.findAll();
         return all.stream().map(ReviewMapper::toDto).toList();
     }
@@ -42,6 +43,15 @@ public class ReviewService {
         review.setRatings(reviewUpdateRequest.getRatings());
         reviewRepository.save(review);
         return ReviewMapper.toDto(review);
+    }
+    @Transactional
+    public ReviewResponse createReview(ReviewCreateRequest request) {
+        Review review = new Review();
+        review.setContent(request.getContent());
+        review.setRatings(request.getRatings());
+        review.setCreatedAt(request.getCreatedAt());
+        Review savedReview = reviewRepository.save(review);
+        return ReviewMapper.toDto(savedReview);
     }
 
 }

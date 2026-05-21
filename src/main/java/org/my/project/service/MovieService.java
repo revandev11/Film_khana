@@ -1,6 +1,7 @@
 package org.my.project.service;
 
 import jakarta.transaction.Transactional;
+import org.my.project.dto.request.MovieCreateRequest;
 import org.my.project.dto.request.MovieUpdateRequest;
 import org.my.project.dto.response.MovieResponse;
 import org.my.project.entity.Movie;
@@ -45,6 +46,16 @@ public class MovieService {
        movie.setTitle(request.getTitle());
         Movie save = movieRepository.save(movie);
         return MovieMapper.toDto(save);
+    }
+    @Transactional
+    public MovieResponse createMovie(MovieCreateRequest request) {
+        Movie movie = new Movie();
+        movie.setTitle(request.getTitle());
+        movie.setGenre(request.getGenre());
+        movie.setDescription(request.getDescription());
+        movie.setRelaeseYear(request.getRelaeseYear());
+        Movie savedMovie = movieRepository.save(movie);
+        return MovieMapper.toDto(savedMovie);
     }
 
 
